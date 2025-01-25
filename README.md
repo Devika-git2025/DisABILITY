@@ -1,14 +1,14 @@
-# [Project Name] 🎯
+# disABILITY Career Platform
 
 
-## Basic Details
-### Team Name: [Name]
+## 
+### Team Name: Tri-Hards
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Devika K Deleep - Govt Engineering College, Thrissur
+- Member 2: Devika R Menon-  Govt Engineering College, Thrissur
+- Member 3: Dilna Manuel -  Govt Engineering College, Thrissur
 
 ### Hosted Project Link
 [mention your project hosted project link here]
