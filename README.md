@@ -17,10 +17,13 @@
 [2-3 lines about what your project does]
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+People with disabilities often face significant barriers when exploring career opportunities. These barriers include a lack of accessible information about potential career paths, limited resources tailored to their unique skills and life situations, and insufficient mentorship to guide them through the challenges of entering and thriving in the workforce. This leads to underemployment, unemployment, and untapped potential in the talent pool of individuals with disabilities. 
 
 ### The Solution
-[How are you solving it? Keep it fun!]
+Develop an inclusive, user-friendly website that empowers people with disabilities to explore diverse career paths tailored to their skills, interests, and life situations. The platform will include:  
+1. *Skill Matching:* A system to assess users' skills, preferences, and accessibility needs, and match them with suitable career opportunities they may not have considered.  
+2. *Mentoring Program:* A dedicated mentoring feature to connect users with professionals who can provide guidance, support, and industry insights.  
+This project aims to break down barriers, foster inclusivity, and support people with disabilities in finding fulfilling and meaningful careers.
 
 ## Technical Details
 ### Technologies/Components Used
