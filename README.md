@@ -57,8 +57,9 @@ A sample output
 
 Database
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![ss2](https://github.com/user-attachments/assets/869e2ec9-101c-45dd-b659-4d7b18f71672)
+
+backend
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
