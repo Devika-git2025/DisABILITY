@@ -59,7 +59,7 @@ Database
 
 ![ss2](https://github.com/user-attachments/assets/869e2ec9-101c-45dd-b659-4d7b18f71672)
 
-backend
+Backend
 
 # Diagrams
 ![Workflow](Add your workflow/architecture diagram here)
