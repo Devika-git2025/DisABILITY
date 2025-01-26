@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Finder</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem; 
+            margin-top: 20px;
+        }
+        .form-section, .results-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], 
+        input[type="number"], 
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+        }
+        .checkbox-group {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error { 
+            color: #dc3545; 
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        .job-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .required::after { content: "*"; color: #dc3545; }
+        .invalid { border: 2px solid #dc3545 !important; }
+        .checkbox-item { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>Job Finder</h1>
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <form id="jobForm">
+                <div class="form-group">
+                    <label class="required" for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <div class="error" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="age">Age:</label>
+                    <input type="number" id="age" name="age">
+                    <div class="error" id="ageError"></div>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="required">Disabilities:</label>
+                    <div id="disabilitiesContainer">
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Visual"> Visual Impairment</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Hearing"> Hearing Impairment</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Mobility"> Mobility Impairment</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Cognitive"> Cognitive Disability</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Speech"> Speech Disability</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="disabilities" value="Other"> Other Disability</label>
+                        </div>
+                    </div>
+                    <div class="error" id="disabilityError"></div>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="required">Skills:</label>
+                    <div id="skillsContainer">
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Python"> Python</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Teaching"> Teaching</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Writing"> Writing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Creativity"> Creativity</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Problem-Solving"> Problem-Solving</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Empathy"> Empathy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Communication"> Communication</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Crafting"> Crafting</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <label><input type="checkbox" name="skills" value="Other"> Other Skill</label>
+                        </div>
+                    </div>
+                    <div class="error" id="skillError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="document">Document:</label>
+                    <input type="file" id="document" name="document">
+                    <div class="error" id="docError"></div>
+                </div>
+
+                <button type="submit">Find Jobs</button>
+                <div class="error" id="formError"></div>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section">
+            <h2>Results</h2>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('jobForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearErrors();
+
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                age: document.getElementById('age').value,
+                disabilities: [...document.querySelectorAll('input[name="disabilities"]:checked')]
+                    .map(cb => cb.value),
+                skills: [...document.querySelectorAll('input[name="skills"]:checked')]
+                    .map(cb => cb.value),
+                document: document.getElementById('document').files[0]
+            };
+
+            // Validation
+            const errors = [];
+            
+            if (!formData.name) {
+                showError('nameError', 'Name is required');
+                errors.push('name');
+            }
+
+            if (!formData.age || isNaN(formData.age) || formData.age < 1) {
+                showError('ageError', 'Valid age is required');
+                errors.push('age');
+            }
+
+            if (formData.disabilities.length === 0) {
+                showError('disabilityError', 'Select at least one disability');
+                errors.push('disabilities');
+            }
+
+            if (formData.skills.length === 0) {
+                showError('skillError', 'Select at least one skill');
+                errors.push('skills');
+            }
+
+            if (!formData.document) {
+                showError('docError', 'Document is required');
+                errors.push('document');
+            }
+
+            if (errors.length > 0) {
+                showError('formError', `Please fix these errors: ${errors.join(', ')}`);
+                return;
+            }
+
+            document.getElementById('jobForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+
+    // Create a FormData object
+    const formData = new FormData(e.target);
+
+    try {
+        // Send data to backend using fetch
+        const response = await fetch('http://localhost:5000/search', {
+            method: 'POST',
+            body: formData, // Send form data (no headers needed for FormData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Server error');
+        }
+
+        const jobs = await response.json(); // Parse JSON response
+        displayResults(jobs); // Display results
+    } catch (error) {
+        console.error('Error:', error);
+        showError('formError', 'An error occurred while processing your request');
+    }
+});
+            
+            displayResults(mockJobs);
+        });
+
+        function displayResults(jobs) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = jobs.length === 0 
+                ? '<p>No jobs found</p>' 
+                : jobs.map(job => `
+                    <div class="job-card">
+                        <h3>${job.title}</h3>
+                        <p>Skills: ${job.skills}</p>
+                        <p>Supports: ${job.disability_support}</p>
+                    </div>
+                `).join('');
+        }
+
+        function showError(elementId, message) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.style.display = 'block';
+            const inputElement = document.getElementById(elementId.replace('Error', ''));
+            if (inputElement) inputElement.classList.add('invalid');
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.error').forEach(el => {
+                el.textContent = '';
+                el.style.display = 'none';
+            });
+            document.querySelectorAll('.invalid').forEach(el => 
+                el.classList.remove('invalid')
+            );
+        }
+    </script>
+</body>
+</html>
