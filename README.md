@@ -14,7 +14,7 @@
 https://dis-ability.vercel.app/
 
 ### Project Description
-[2-3 lines about what your project does]
+A webapp that help disabled people to find suitable job within their limits and the skills they have that helps towards the betterment of their livelihood. 
 
 ### The Problem statement
 People with disabilities often face significant barriers when exploring career opportunities. These barriers include a lack of accessible information about potential career paths, limited resources tailored to their unique skills and life situations, and insufficient mentorship to guide them through the challenges of entering and thriving in the workforce. This leads to underemployment, unemployment, and untapped potential in the talent pool of individuals with disabilities. 
