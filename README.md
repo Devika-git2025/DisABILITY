@@ -22,8 +22,7 @@ People with disabilities often face significant barriers when exploring career o
 ### The Solution
 Develop an inclusive, user-friendly website that empowers people with disabilities to explore diverse career paths tailored to their skills, interests, and life situations. The platform will include:  
 1. *Skill Matching:* A system to assess users' skills, preferences, and accessibility needs, and match them with suitable career opportunities they may not have considered.  
-2. *Mentoring Program:* A dedicated mentoring feature to connect users with professionals who can provide guidance, support, and industry insights.  
-This project aims to break down barriers, foster inclusivity, and support people with disabilities in finding fulfilling and meaningful careers.
+
 
 ## Technical Details
 ### Technologies/Components Used
