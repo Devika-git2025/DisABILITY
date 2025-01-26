@@ -28,10 +28,10 @@ This project aims to break down barriers, foster inclusivity, and support people
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- Python, HTML, SQLite
+- Flask
+- Requests
+- VS Code
 
 For Hardware:
 - [List main components]
