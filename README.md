@@ -30,7 +30,7 @@ For Software:
 - Python, HTML, SQLite
 - Flask
 - Requests
-- VS Code
+- VS Code, ChatGPT, Deep Seek r
 
 For Hardware:
 - [List main components]
